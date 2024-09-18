@@ -14,6 +14,7 @@ EVT_RESET = 2
 
 m_state = STATE_IDLE
 m_evt = EVT_NONE
+m_wide = None
 
 def set_state(st):
     global m_state
@@ -25,8 +26,12 @@ def get_pressed():
     m_evt = EVT_NONE
     return _evt
 
+def get_wide():
+    global m_wide
+    return m_wide
+
 def serial_loop():
-    global m_state, m_evt
+    global m_state, m_evt, m_wide
 
     if config.SERIAL_PORT is None:
         while True:
@@ -48,6 +53,8 @@ def serial_loop():
                 for c in dat:
                     if c == "1": m_evt = EVT_PRINT
                     if c == "2": m_evt = EVT_RESET
+                    if c == "w": m_wide = True
+                    if c == "n": m_wide = False
 
                 if not ser.is_open:
                     break

@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>LabelTron</title>
 
@@ -60,18 +61,20 @@
 		    <br><br>
                     <div style="float: right;" class="btn-group" role="group">
                         <input type="radio" class="btn-check" name="widthradio"
-                                id="widthradio1" autocomplete="off" value="12mm" checked>
-                        <label class="btn btn-outline-dark" for="widthradio1">12mm</label>
+                                id="widthradio1" autocomplete="off" value="12mm"
+                                {% if not wide %}checked{% endif %}>
+                        <label class="btn btn-outline-dark" for="widthradio1">12mm{% if width_detected and not wide %} (detected){% endif %}</label>
 
                         <input type="radio" class="btn-check" name="widthradio"
-                                id="widthradio2" autocomplete="off" value="24mm">
-                        <label class="btn btn-outline-dark" for="widthradio2">24mm</label>
+                                id="widthradio2" autocomplete="off" value="24mm"
+                                {% if wide %}checked{% endif %}>
+                        <label class="btn btn-outline-dark" for="widthradio2">24mm{% if width_detected and wide %} (detected){% endif %}</label>
                     </div>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5">
                     <div style="padding-bottom: 12pt;">
-                        <b>API Key:</b> <tt>{{apikey}}</tt>
+                        <b>API Key:</b> <span style="font-family: monospace;">{{ apikey }}</span>
                         <br><br>
                         <h3 style="display: inline;">Print Queue</h3>
                         <button class="btn btn-danger btn-sm" style="display: inline;

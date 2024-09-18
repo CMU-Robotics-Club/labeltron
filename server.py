@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, make_response, session, redir
 from auth import setup_auth
 from config import *
 from render import *
-from queue import *
+from lqueue import *
 from serial_iface import *
 import threading
 import logging
@@ -32,7 +32,12 @@ def update_apikey():
 def homepage():
     key = update_apikey()
     print("Page loaded")
-    return render_template("index.html", apikey=key)
+    return render_template(
+        "index.html",
+        apikey=key,
+        wide=(get_wide() == True),
+        width_detected=(get_wide() is not None)
+    )
 
 @app.route("/render_preview.png", methods=["GET"])
 def render_preview():

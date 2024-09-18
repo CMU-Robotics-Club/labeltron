@@ -22,7 +22,7 @@ if os.path.exists("creds.txt"):
         AUTHENTICATION = (creds[0].strip(), creds[1].strip())
 
 """
-Serial port to require manual button-press to print
+Serial port to require manual button-press to print / detect label width
 """
 SERIAL_PORT = None
 # SERIAL_PORT = "/dev/ttyUSB0"
